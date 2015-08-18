@@ -32,8 +32,6 @@ const unsigned int consoleSizeX = 150;
 const unsigned int consoleSizeY = 50;
 
 //2D array to store the position of the walls and items etc.
-const unsigned int worldSizeX = 600;
-const unsigned int worldSizeY = 200;
 unsigned int g_worldGrid[worldSizeX][worldSizeY] = {0};
 
 // Initialize variables, allocate memory, load data from file, etc. 
@@ -43,8 +41,8 @@ void init()
     // Set precision for floating point output
     elapsedTime = 0.0;
 
-    charLocation.X = console.getConsoleSize().X / 2;
-    charLocation.Y = console.getConsoleSize().Y / 2;
+    charLocation.X = 5;
+    charLocation.Y = 6;
     // sets the width, height and the font name to use in the console
     console.setConsoleFont(0, 16, L"Consolas");
 }
@@ -90,6 +88,9 @@ void update(double dt)
     // get the delta time
     elapsedTime += dt;
     deltaTime = dt;
+
+	//Moves Camera
+	moveCameraTo();
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     moveCharacter();    // moves the character, collision detection, physics, etc
@@ -195,7 +196,7 @@ void processUserInput()
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    console.clearBuffer(0x1F);
+    console.clearBuffer(0x0F);
 }
 void renderMap()
 {
@@ -204,6 +205,8 @@ void renderMap()
         0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
         0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
     };
+
+	renderView();
 
 }
 

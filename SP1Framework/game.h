@@ -1,5 +1,9 @@
 #ifndef _GAME_H
 #define _GAME_H
+#
+//Custom Variables
+#define worldSizeX 600
+#define worldSizeY 200
 
 #include "Framework\timer.h"
 
@@ -29,5 +33,11 @@ void renderMap();           // renders the map to the buffer first
 void renderCharacter();     // renders the character into the buffer
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc
 void renderToScreen();      // dump the contents of the buffer to the screen, one frame worth of game
+
+//Terry's Function Prototypes
+void moveCameraTo();
+void renderView();
+
+
 
 #endif // _GAME_H
