@@ -107,7 +107,6 @@ void render()
     clearScreen();      // clears the current screen and draw from scratch 
     renderMap();        // renders the map to the buffer first
     renderCharacter();  // renders the character into the buffer
-    //renderFramerate();  // renders debug information, frame rate, elapsed time, etc
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
 
@@ -130,7 +129,7 @@ void moveCharacter()
 
 	} else if (g_worldGrid[charLocation.X][charLocation.Y + 1] == 0) {
 		
-		//++charLocation.Y;
+		++charLocation.Y;
 
 	} else if (g_worldGrid[charLocation.X][charLocation.Y + 1] != 0) {
 		
@@ -141,7 +140,7 @@ void moveCharacter()
     if (keyPressed[K_LEFT] && charLocation.X > 0 && g_worldGrid[charLocation.X - 2][charLocation.Y] == 0 && g_worldGrid[charLocation.X - 2][charLocation.Y - 1] == 0 && g_worldGrid[charLocation.X - 2][charLocation.Y - 2] == 0) {
 		charLocation.X--;
 		g_playerHead[0] = ' ';
-		g_playerHead[1] = (char)1;
+		g_playerHead[1] = '@';
 		g_playerHead[2] = ' ';
 		g_playerHead[3] = '\0';
 		g_playerBody[0] = '-';
@@ -157,7 +156,7 @@ void moveCharacter()
     if (keyPressed[K_RIGHT] && g_worldGrid[charLocation.X + 2][charLocation.Y] == 0 && g_worldGrid[charLocation.X + 2][charLocation.Y - 1] == 0 && g_worldGrid[charLocation.X + 2][charLocation.Y - 2] == 0) {
         charLocation.X++;
 		g_playerHead[0] = ' ';
-		g_playerHead[1] = (char)1;
+		g_playerHead[1] = '@';
 		g_playerHead[2] = ' ';
 		g_playerHead[3] = '\0';
 		g_playerBody[0] = ' ';
@@ -172,7 +171,7 @@ void moveCharacter()
 
 	if (keyPressed[K_RIGHT] == false && keyPressed[K_LEFT] == false) {
 		g_playerHead[0] = '\\';
-		g_playerHead[1] = (char)1;
+		g_playerHead[1] = '@';
 		g_playerHead[2] = '/';
 		g_playerHead[3] = '\0';
 		g_playerBody[0] = ' ';
@@ -217,7 +216,7 @@ void renderCharacter()
 	console.writeToBuffer(charLocation.X, charLocation.Y - 1, g_playerBody[1], 0x0F);
 	console.writeToBuffer(charLocation.X - 1, charLocation.Y - 1, g_playerBody[0], 0x0F);
 	console.writeToBuffer(charLocation.X + 1, charLocation.Y - 1, g_playerBody[2], 0x0F);
-	console.writeToBuffer(charLocation.X, charLocation.Y - 1, g_playerHead[1], 0x0F);
+	console.writeToBuffer(charLocation.X, charLocation.Y - 2, g_playerHead[1], 0x0F);
 	console.writeToBuffer(charLocation.X - 1, charLocation.Y - 2, g_playerHead[0], 0x0F);
 	console.writeToBuffer(charLocation.X + 1, charLocation.Y - 2, g_playerHead[2], 0x0F);
 }
